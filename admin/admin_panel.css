@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body
+{
+  background: #0b001b;
+  color: white;
+}
+header{
+  width: calc(100% - 50px);
+  margin: 10px 25px 0 25px;
+  text-align: center;
+  height: 80px;
+  border: 2px solid green;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 0px;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: monospace;
+}
+.grid div.content
+{
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 66.66%;
+  width: 66.66%;
+  min-width: calc(100% - 300px);
+  padding:20px 0;
+  padding-left: 10px;
+}
+
+.grid .content .section
+{
+  display: none;
+}
+div.display
+{
+  display: block;
+}
+.section1
+{
+  display: none;
+}
+.funtions
+{
+  margin: 10px;
+  position: relative;
+}
+div.section1
+{
+  margin: 10px;
+}
+ul li
+{
+  list-style: none;
+}

@@ -1,0 +1,268 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="public_style.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <title>Document</title>
+</head>
+<body>
+  <script src="assests/script.js"></script>
+  <header class="menu delay animate__animated animate__backInDown">
+    <ul>
+      <a href="#top" class="active navLink"><li>Home</li></a>
+      <a href="#feature" class="navLink"><li>Features</li></a>
+      <a href="#vision" class="navLink"><li>Vision</li></a>
+      <a href="public/login.php" class="navLink"><li>LMS</li></a>
+      <a href="#about" class="navLink"><li>About</li></a>
+    </ul>
+  </header>
+  <div class="loader"></div>
+  <main>
+    <div id="main_up" class="delay animate__animated animate__backInUp">
+        <p id="up_hour">00</p>
+        <p>:</p>
+        <p id="up_min">00</p>
+        <p>:</p>
+        <p id="up_sec">00</p>
+    </div>
+  </main>
+<script>
+  let hour = document.getElementById("up_hour");
+  let min = document.getElementById("up_min");
+  let sec = document.getElementById("up_sec");
+
+// Function
+const updateTime = () => {
+  let time = new Date();
+  hour.innerText = time.getHours()
+  min.innerText = time.getMinutes()
+  sec.innerText = time.getSeconds()
+};
+// Updating
+setInterval(updateTime, 1000);
+</script>
+  <div class="herosection" id="top">
+    <div class="herotext delay animate__animated animate__zoomIn">
+      <h1><span>L</span>AB</h1>
+      <h1><span>M</span>ANAGEMEN<span>T</span></h1>
+      <h1><span>S</span>YSTE<span>M</span></h1>
+      
+      <div class="typer">
+        <h3><span class="typing"></span></h3>
+    <script>
+      const quotes = [
+          "An Ultimate Lab Management System designed By CSE Students.",
+          "Manage smart, work smart.",
+          "Efficiency drives innovation.",
+          "Our lab , Our responsible.",
+          "In the realm of technology, seamless management paves the way for boundless innovation."
+      ];
+  
+      const quoteElement = document.querySelector('.typing');
+      let currentQuoteIndex = 0;
+      let currentCharIndex = 0;
+      let typingSpeed = 50; // Adjust typing speed here
+  1
+
+      function displayQuote() {
+          const quote = quotes[currentQuoteIndex];
+          if (currentCharIndex < quote.length) {
+              quoteElement.innerHTML += quote.charAt(currentCharIndex);
+              currentCharIndex++;
+              setTimeout(displayQuote, typingSpeed);
+          } else {
+              setTimeout(eraseQuote, 2000); // Wait for 2 seconds before erasing
+          }
+      }
+  
+      function eraseQuote() {
+          if (currentCharIndex >= 0) {
+              const quote = quotes[currentQuoteIndex];
+              quoteElement.innerHTML = quote.substring(0, currentCharIndex);
+              currentCharIndex--;
+              setTimeout(eraseQuote, 100); // Adjust erasing speed here
+          } else {
+              currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+              setTimeout(displayQuote, 1000); // Wait for 0.5 seconds before displaying next quote
+          }
+      }
+  
+      displayQuote();
+  </script>
+  
+      </div>
+    </div>
+  </div>
+  <div class="more" id="feature">
+    <div class="items">
+
+    </div>
+  </div>
+  <div class="more1" id="vision">
+
+  </div>
+  <div class="about" id="about">
+    <div class="guider-card">
+    <h1>Our Project Guider</h1>
+    <div class="guider">
+      <img src="assests/user.png" alt="">
+      <div class="info">
+        <h3>Er. Satabdi Palit</h3>
+        <h4>Project Guide</h4>
+        <h4>Senior Lecturer at Bhadrak Engineering School & Technology</h4>
+      </div>
+      <div class="social-icon">
+        <a href=""><i class='bx bxl-github'></i></a>
+        <a href=""><i class='bx bxl-linkedin' ></i></a>
+        <a href=""><i class='bx bxl-twitter'></i></a>
+        <a href=""><i class='bx bxl-instagram'></i></a>
+      </div>
+    </div>
+    </div>
+    <div class="dev">
+      <div class="dev-card">
+        <h1>1st dev</h1>
+      </div>
+      <div class="dev-card">
+        <h1>2nd dev</h1>
+      </div>
+      <div class="dev-card">
+        <h1>2nd dev</h1>
+      </div>
+      <div class="dev-card">
+        <h1>2nd dev</h1>
+      </div>
+      <div class="dev-card">
+        <h1>2nd dev</h1>
+      </div>
+    </div>
+  </div>
+  <!-- Infinite Scroll-->
+  <div class="infinite-scroll">
+    <h1>Infinite Scroll</h1>
+    <div class="scroll" style="--time:20s">
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+  </div>
+  <div class="scroll" style="--time:30s">
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+  </div>
+  <div class="scroll" style="--time:25s">
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+  </div>
+  <div class="scroll" style="--time:40s">
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+      <div>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>ReactJS</span>
+          <span>Figma</span>
+          <span>Angular</span>
+          <span>Node JS</span>
+          <span>PHP</span>
+      </div>
+  </div>
+  <div class="scroll imgBox" style="--time:25s">
+      <div>
+          <img src="assests/images/html.png" alt="">
+          <img src="assests/images/css.png" alt="">
+          <img src="assests/images/js.png" alt="">
+          <img src="assests/images/React.png" alt="">
+          <img src="assests/images/angular.png" alt="">
+          <img src="assests/images/figma.png" alt="">
+          <img src="assests/images/mui.png" alt="">
+          <img src="assests/images/tailwind.png" alt="">
+          <img src="assests/images/php.png" alt="">
+      </div>
+      <div>
+          <img src="assests/images/html.png" alt="">
+          <img src="assests/images/css.png" alt="">
+          <img src="assests/images/js.png" alt="">
+          <img src="assests/images/React.png" alt="">
+          <img src="assests/images/angular.png" alt="">
+          <img src="assests/images/figma.png" alt="">
+          <img src="assests/images/mui.png" alt="">
+          <img src="assests/images/tailwind.png" alt="">
+          <img src="assests/images/php.png" alt="">
+      </div>
+  </div>
+  </div>
+  <div class="footer">
+    <div class="top">
+      <a href="#top"><i class='bx bxs-up-arrow'></i></a>
+    </div>
+  </div>
+ 
+</body>
+</html>

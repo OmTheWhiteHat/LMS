@@ -1,0 +1,23 @@
+/project_root
+    /assets
+        /css
+        /js
+        /images
+    /includes
+        - header.php
+        - footer.php
+        - db.php
+    /admin
+        - dashboard.php
+        - manage_devices.php
+        - system_log.php
+        - print_receipt.php
+        - manage_systems.php
+        - manage_admin.php
+    /public
+        - index.php
+        - login.php
+    /css
+        - style.css
+    /js
+        - script.js
