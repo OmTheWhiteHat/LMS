@@ -36,4 +36,4 @@ To install and set up the **Computer Lab Management System**, follow the steps b
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/computer-lab-management.git
+   git clone https://github.com/OmTheWhiteHat/LMS.git
