@@ -14,13 +14,74 @@
   <script src="assests/script.js"></script>
   <header class="menu delay animate__animated animate__backInDown">
     <ul>
-      <a href="#top" class="active navLink"><li>Home</li></a>
+      <a href="#top" class="navLink"><li>Home</li></a>
       <a href="#feature" class="navLink"><li>Features</li></a>
       <a href="#vision" class="navLink"><li>Vision</li></a>
       <a href="public/login.php" class="navLink"><li>LMS</li></a>
       <a href="#about" class="navLink"><li>About</li></a>
     </ul>
   </header>
+  <div class="menu-mb delay animate__animated animate__fadeIn">
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <ul id="menu-list">
+      <a href="#top" class="navLink"><li>Home</li></a>
+      <a href="#feature" class="navLink"><li>Features</li></a>
+      <a href="#vision" class="navLink"><li>Vision</li></a>
+      <a href="public/login.php" class="navLink"><li>LMS</li></a>
+      <a href="#about" class="navLink"><li>About</li></a>
+    </ul>
+  </div>
+  <script>
+ // Grab the toggle button and the menu list
+// Get the menu, menu toggle, and menu list elements
+// JavaScript to toggle the mobile menu
+// JavaScript to toggle the mobile menu
+document.getElementById('mobile-menu').addEventListener('click', function() {
+  const menu = document.querySelector('.menu-mb');
+  const menuToggle = document.getElementById('mobile-menu');
+  menu.classList.toggle('active');
+  menuToggle.classList.toggle('active');
+  document.body.classList.toggle('menu-active');
+});
+
+// Intersection Observer to add active class to menu items based on visible section
+const sections = document.querySelectorAll('section, .more, .more1, .herosection, .about, .infinite-scroll');
+const navLinks = document.querySelectorAll('.navLink');
+
+// Observer options
+const options = {
+  root: null, // Use the viewport as the root
+  threshold: 0.5 // Trigger when at least 50% of the section is visible
+};
+
+// Intersection Observer callback function
+const observerCallback = (entries, observer) => {
+  entries.forEach(entry => {
+    const link = document.querySelector(`a[href="#${entry.target.id}"]`);
+
+    if (entry.isIntersecting) {
+      // Add active class to the corresponding link
+      link.classList.add('active');
+    } else {
+      // Remove active class when not in view
+      link.classList.remove('active');
+    }
+  });
+};
+
+// Create the observer
+const observer = new IntersectionObserver(observerCallback, options);
+
+// Observe each section
+sections.forEach(section => {
+  observer.observe(section);
+});
+
+  </script>
   <div class="loader"></div>
   <main>
     <div id="main_up" class="delay animate__animated animate__backInUp">
@@ -46,7 +107,7 @@ const updateTime = () => {
 // Updating
 setInterval(updateTime, 1000);
 </script>
-  <div class="herosection" id="top">
+<div class="herosection" id="top">
     <div class="herotext delay animate__animated animate__zoomIn">
       <h1><span>L</span>AB</h1>
       <h1><span>M</span>ANAGEMEN<span>T</span></h1>
@@ -99,6 +160,7 @@ setInterval(updateTime, 1000);
 
   <!-- Features Section -->
   <div class="more" id="feature">
+    <div class="glass-panel"></div>
     <div class="decorative-circle-left"></div>
     <div class="decorative-circle-right"></div>
     <div class="items">
@@ -113,15 +175,18 @@ setInterval(updateTime, 1000);
         <li><strong>Reports:</strong> Generate reports based on usage, performance, and issues.</li>
       </ul>
     </div>
+    <div class="glass-panel"></div>
   </div>
 
   <!-- Vision Section -->
   <div class="more1" id="vision">
     <div class="decorative-rectangle-left-top"></div>
     <div class="decorative-triangle-right"></div>
+    <div class="glass-panel">
     <h2>Our Vision</h2>
     <p>Our vision is to build a seamless and highly efficient Lab Management System that allows educational institutions to efficiently manage their resources, improve productivity, and enhance student learning experiences. We aim to provide a centralized platform that enables easy monitoring, reporting, and maintenance of lab equipment and resources.</p>
     <p>We aspire to transform the way educational labs operate, with a focus on sustainability, performance, and innovation. By incorporating the latest technology trends, we aim to build a system that will grow and evolve with the future needs of educational institutions.</p>
+    </div>
   </div>
 
   <!-- About Section -->
@@ -149,22 +214,47 @@ setInterval(updateTime, 1000);
       <div class="dev-card">
         <h1>1st Developer</h1>
         <p>John Doe - Full Stack Developer</p>
+        <div class="social">
+            <a href=""><i class='bx bxl-github'></i></a>
+            <a href=""><i class='bx bxl-linkedin-square' ></i></a>
+            <a href=""><i class='bx bxl-instagram-alt' ></i></a>
+        </div>
       </div>
       <div class="dev-card">
         <h1>2nd Developer</h1>
         <p>Jane Smith - Front-End Developer</p>
+        <div class="social">
+          <a href=""><i class='bx bxl-github'></i></a>
+          <a href=""><i class='bx bxl-linkedin-square' ></i></a>
+          <a href=""><i class='bx bxl-instagram-alt' ></i></a>
+      </div>
       </div>
       <div class="dev-card">
         <h1>3rd Developer</h1>
         <p>Jack Brown - Back-End Developer</p>
+        <div class="social">
+          <a href=""><i class='bx bxl-github'></i></a>
+          <a href=""><i class='bx bxl-linkedin-square' ></i></a>
+          <a href=""><i class='bx bxl-instagram-alt' ></i></a>
+      </div>
       </div>
       <div class="dev-card">
         <h1>4th Developer</h1>
         <p>Emily White - Database Specialist</p>
+        <div class="social">
+          <a href=""><i class='bx bxl-github'></i></a>
+          <a href=""><i class='bx bxl-linkedin-square' ></i></a>
+          <a href=""><i class='bx bxl-instagram-alt' ></i></a>
+      </div>
       </div>
       <div class="dev-card">
         <h1>5th Developer</h1>
         <p>Chris Green - UI/UX Designer</p>
+        <div class="social">
+          <a href=""><i class='bx bxl-github'></i></a>
+          <a href=""><i class='bx bxl-linkedin-square' ></i></a>
+          <a href=""><i class='bx bxl-instagram-alt' ></i></a>
+      </div>
       </div>
     </div>
   </div>

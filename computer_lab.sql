@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2024 at 01:29 PM
+-- Generation Time: Jan 21, 2025 at 05:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admins`
 --
-CREATE Database computer_lab;
+
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
@@ -39,8 +39,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin'),
-(2, 'om', '$2y$10$eJDzCOb8MWf5xSD5hC7XT.oD3L67tpaZeq6OLCUwhMCMPxeQ9EgJC', 'Admin');
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
 
 -- --------------------------------------------------------
 
@@ -60,7 +59,7 @@ CREATE TABLE `item_stocks` (
 --
 
 INSERT INTO `item_stocks` (`id`, `item_name`, `quantity`, `last_updated`) VALUES
-(1, 'MOUSE', 1, '2024-12-12 15:25:33');
+(1, 'MOUSE', 1, '2024-12-12 09:55:33');
 
 -- --------------------------------------------------------
 
@@ -88,30 +87,51 @@ INSERT INTO `receipts` (`id`, `item_name`, `quantity`, `total_amount`, `created_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `resolved_issues`
+--
+
+CREATE TABLE `resolved_issues` (
+  `id` int(11) NOT NULL,
+  `system_id` int(11) DEFAULT NULL,
+  `issue_description` text DEFAULT NULL,
+  `resolution_details` text DEFAULT NULL,
+  `resolution_date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resolved_issues`
+--
+
+INSERT INTO `resolved_issues` (`id`, `system_id`, `issue_description`, `resolution_details`, `resolution_date`) VALUES
+(1, 1, 'Montor', 'Successfully repaired', '2024-12-13 08:48:34'),
+(2, 1, 'Keyboard', 'maintainance', '2024-12-13 09:06:24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `systems`
 --
 
 CREATE TABLE `systems` (
   `id` int(11) NOT NULL,
-  `ups_id` varchar(50) NOT NULL,
-  `monitor_id` varchar(50) NOT NULL,
-  `internet` varchar(50) NOT NULL,
-  `image` varchar(255) NOT NULL,
+  `cpu_id` varchar(255) DEFAULT NULL,
+  `ups_id` varchar(255) DEFAULT NULL,
+  `monitor_id` varchar(255) DEFAULT NULL,
   `issue` text DEFAULT NULL,
   `description` text DEFAULT NULL,
-  `lab_name` varchar(100) NOT NULL,
-  `os_installed` varchar(100) NOT NULL,
-  `ram` varchar(50) NOT NULL,
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp()
+  `lab_name` varchar(255) DEFAULT NULL,
+  `os_installed` varchar(255) DEFAULT NULL,
+  `ram` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `internet` enum('Yes','No','Unknown') NOT NULL DEFAULT 'Unknown'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `systems`
 --
 
-INSERT INTO `systems` (`id`, `ups_id`, `monitor_id`, `internet`, `image`, `issue`, `description`, `lab_name`, `os_installed`, `ram`, `last_updated`) VALUES
-(1, 'BEST01', 'BEST01', 'YES', 'null', 'Keyboard', 'keyboard', 'CSE 2024', 'WINDOWS', '12GB', '2024-12-12 15:00:14'),
-(2, 'BEST02', 'BEST02', 'YES', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFRUWFxcYFxcYGBcZGBUXGBoWGBcYGBgYHSggHRolHRcYITEhJSkrLi4uFx81ODMtNygtLisBCgoKDg0OGxAQGy0lICYtLy0tLS0vLS8tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAMIBAwMBIgACEQEDEQH/', 'Monitor', 'Moniter Nor Working', 'CSE LAB-01', 'LINUX', '8GB', '2024-12-13 02:47:12');
+INSERT INTO `systems` (`id`, `cpu_id`, `ups_id`, `monitor_id`, `issue`, `description`, `lab_name`, `os_installed`, `ram`, `image`, `internet`) VALUES
+(1, 'BEST-CPU-01', 'BEST-01', 'BEST-01', 'NO', 'No', 'CS-1', 'LINUX', '12GB', '../uploads/default.jpg', 'Unknown');
 
 -- --------------------------------------------------------
 
@@ -132,14 +152,8 @@ CREATE TABLE `system_log` (
 --
 
 INSERT INTO `system_log` (`id`, `username`, `login_time`, `ip_address`, `user_agent`) VALUES
-(1, 'admin', '2024-12-12 15:58:51', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(2, 'admin', '2024-12-13 02:44:00', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(3, 'admin', '2024-12-13 02:48:14', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(4, 'admin', '2024-12-13 02:49:39', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(5, 'admin', '2024-12-13 02:51:24', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(6, 'admin', '2024-12-13 02:53:08', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(7, 'admin', '2024-12-13 02:53:55', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
-(8, 'admin', '2024-12-13 12:06:05', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36');
+(1, 'admin', '2024-12-13 07:22:40', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'),
+(2, 'admin', '2024-12-13 07:42:22', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36');
 
 -- --------------------------------------------------------
 
@@ -150,7 +164,7 @@ INSERT INTO `system_log` (`id`, `username`, `login_time`, `ip_address`, `user_ag
 CREATE TABLE `system_status` (
   `id` int(11) NOT NULL,
   `system_id` int(11) NOT NULL,
-  `status` enum('Active','Inactive','Maintenance','Fault') NOT NULL,
+  `status` varchar(255) NOT NULL,
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -159,11 +173,9 @@ CREATE TABLE `system_status` (
 --
 
 INSERT INTO `system_status` (`id`, `system_id`, `status`, `last_updated`) VALUES
-(1, 1, 'Inactive', '2024-12-12 15:37:09'),
-(2, 1, 'Maintenance', '2024-12-12 15:38:11'),
-(3, 1, 'Inactive', '2024-12-12 16:03:11'),
-(4, 2, 'Active', '2024-12-13 02:54:05'),
-(5, 2, 'Fault', '2024-12-13 12:06:22');
+(1, 1, 'Inactive', '2024-12-13 09:07:36'),
+(2, 1, 'Inactive', '2024-12-13 09:07:43'),
+(3, 1, 'Active', '2024-12-13 09:08:59');
 
 --
 -- Indexes for dumped tables
@@ -186,6 +198,13 @@ ALTER TABLE `item_stocks`
 --
 ALTER TABLE `receipts`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `resolved_issues`
+--
+ALTER TABLE `resolved_issues`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `system_id` (`system_id`);
 
 --
 -- Indexes for table `systems`
@@ -214,7 +233,7 @@ ALTER TABLE `system_status`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `item_stocks`
@@ -229,26 +248,38 @@ ALTER TABLE `receipts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `resolved_issues`
+--
+ALTER TABLE `resolved_issues`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `systems`
 --
 ALTER TABLE `systems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `system_log`
 --
 ALTER TABLE `system_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `system_status`
 --
 ALTER TABLE `system_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `resolved_issues`
+--
+ALTER TABLE `resolved_issues`
+  ADD CONSTRAINT `resolved_issues_ibfk_1` FOREIGN KEY (`system_id`) REFERENCES `systems` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `system_status`

@@ -22,6 +22,16 @@ html
 {
   scroll-behavior: smooth;
 }
+.glass-panel
+{
+  background: #00000017;
+  border:2px solid #c7c6c64f;
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  width: calc(100% - 100px);
+  margin: 0 50px;
+  padding: 50px;
+}
 /* ::-webkit-scrollbar-thumb
 {
   width: 5px;
@@ -34,7 +44,7 @@ html
   height: 400px;
   background-color: #5c0606; /* Circle color */
   border-radius: 50%; /* This makes it round */
-  top: 20%; /* Positioning */
+  top: 10%; /* Positioning */
   left: 10%;
   z-index: -1; /* To place it behind content */
 }
@@ -65,6 +75,7 @@ html
   top: 5%;
   left: 10%;
   z-index: -1; /* To place it behind content */
+  border-radius: 10px;
 }
 .decorative-rectangle-left-top:hover
 {
@@ -88,7 +99,7 @@ html
   height: 0;
   border-left: 100px solid transparent;
   border-right: 100px solid transparent;
-  border-bottom: 200px solid #ff2525; /* Triangle color */
+  border-bottom: 200px solid #e67409; /* Triangle color */
   top: 70%;
   right: 10%;
   z-index: -1; /* To place it behind content */
@@ -101,6 +112,195 @@ html
   transform: scale(1.1);
   transition: .5s; /* Slightly enlarge on hover */
 }
+
+/* Hide the desktop header on mobile */
+@media screen and (max-width: 764px) {
+  header {
+    display: none; /* Hide the header on small screens */
+  }
+
+  /* Show mobile menu */
+  .menu-mb {
+    display: block; /* Initially hidden */
+  }
+}
+
+/* Mobile Menu */
+.menu-mb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(29, 0, 83, 0.575); /* Glass UI semi-transparent background */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out;
+  transition: height 0.3s ease; /* Smooth transition for expanding height */
+}
+
+/* Menu items */
+#menu-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width of the container */
+}
+
+/* Menu links */
+#menu-list a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect for the menu items */
+#menu-list a:hover,
+#menu-list a.active {
+  background-color: rgba(255, 255, 255, 0.2); /* Light background on hover */
+  color: #00f7ff; /* Accent color */
+}
+
+/* Menu item list spacing */
+#menu-list li {
+  padding: 10px;
+}
+
+/* Hamburger icon */
+.menu-toggle {
+  margin: 10px 10px 15px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 2000;
+  position: relative;
+}
+
+.menu-toggle .bar {
+  height: 4px;
+  width: 100%;
+  background-color: #00c975;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Show mobile menu when active */
+.menu-mb.active {
+  height: 100%; /* Full height when menu is open */
+}
+
+.menu-mb.active #menu-list {
+  display: block; /* Show the menu items when active */
+}
+
+/* Adjust hamburger icon to X shape when menu is open */
+@media (max-width: 768px) {
+  .menu-mb {
+    display: block;
+  }
+
+  /* Mobile menu active state */
+  .menu-mb.active {
+    height: 50%; /* Full screen height when open */
+  }
+
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translate(10px,10px);
+    rotate: 45deg;
+    position: absolute;
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0; /* Hide the middle bar */
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translate(-10px,10px);
+    rotate: -45deg;
+    position: absolute;
+  }
+}
+
+/* Prevent body scrolling when menu is open */
+body.menu-active {
+  overflow: hidden;
+}
+
+/* Desktop header styles */
+header.menu {
+  height: 60px;
+  z-index: 50;
+  position: fixed;
+  top: 13px;
+  left: 0;
+  width: calc(100% - 400px);
+  margin: 0 200px;
+  padding: 10px 20px;
+  border-radius: 40px;
+  background: #ffffff;
+  border: 2px solid #000000;
+}
+
+/* Header menu items */
+header.menu ul {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  margin: 0 5% 0 5%;
+}
+
+/* Link styling */
+header.menu ul a {
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  color: #000000;
+  padding: 5px 0px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+}
+
+/* Active state for header links */
+header.menu ul a.active {
+  color: #000;
+}
+
+/* Header menu link hover effect */
+header.menu ul a:hover {
+  color: #9900ff;
+}
+
+/* Remove bullet points from menu list */
+header.menu ul li {
+  list-style: none;
+}
+
+
+
 
 
 div.herosection
@@ -192,56 +392,7 @@ div.herosection .typer
     transform: rotate(1turn);
   }
 }
-header.menu
-{
-    height: 60px;
-    z-index: 50;
-    position: fixed;
-    top: 13;
-    left: 0;
-    width: calc(100% - 400px);
-    margin: 0 200px 0 200px;
-    padding: 10px 20px;
-    border-radius: 40px;
-    background: #ffffff;
-    border: 2px solid #000000;
-}
-header.menu ul
-{
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    margin: 0 5% 0 5%;
-    /* padding: 10px;
-    height: 60px; */
-}
-header.menu ul a
-{
-  font-size: 1rem;
-    font-family: "Poppins", sans-serif;
-    color: #000000;
-    padding: 5px 0px;
-    border-radius: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    justify-content: space-between;
-    float: left;
-    display: flex;
-}
-header.menu ul a.active
-{
-  /* background: rgb(115, 0, 255); */
-  color: #000;
-    /* padding: 8px 15px; */
-}
-header.menu ul a:hover
-{
-  color: #9900ff;
-}
-header.menu ul li
-{
-    list-style: none;
-}
+
 /*Digital Watch*/
 main {
   font-family: "Londrina Shadow", sans-serif;
@@ -452,18 +603,94 @@ div.about div.dev .dev-card {
   justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.5s ease;
+  transition: transform 0.4s ease,background 1s ease;
   margin: 10px 0; /* Margin between cards */
   width: 280px; /* Fixed width for cards */
 }
-
-/* Hover effect for the dev-card */
-div.about div.dev .dev-card:hover {
-  background: linear-gradient(45deg, #009578,#0A66C2); /* Gradient on hover */
-  transform: translateY(-10px); /* Lift the card */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+div.social {
+  display: flex;               /* Enable flexbox */
+  justify-content: space-evenly;/* Distribute space evenly between items */
+  align-items: center;         /* Optionally, center the items vertically */
+  width: 100%;  
+  margin: 20px 0;
+  position: absolute;
+  bottom: 10;
 }
 
+div.social a {
+  text-decoration: none;       /* Optional: Remove underlines */
+  color: #000;                 /* Optional: Set the text color */
+  padding: 10px;               /* Optional: Add some padding for clickable area */
+  font-size: 3rem;
+  background: #00ff95;/* Gradient background */
+  -webkit-background-clip: text; /* Apply background gradient to text */
+  color: transparent; /* Make the text transparent to show gradient */
+  transition: transform 0.3s ease-in-out;
+}
+
+div.social a:hover {
+  transform: scale(1.1); /* Slight hover effect */
+}
+
+
+
+div.about div.dev .dev-card:nth-child(1)
+{
+  background: url(assests/images/om.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+div.about div.dev .dev-card:nth-child(2)
+{
+  background: url(assests/images/om.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+div.about div.dev .dev-card:nth-child(3)
+{
+  background: url(assests/images/om.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+div.about div.dev .dev-card:nth-child(4)
+{
+  background: url(assests/images/om.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+div.about div.dev .dev-card:nth-child(5)
+{
+  background: url(assests/images/om.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+div.about div.dev .dev-card h1,
+div.about div.dev .dev-card p,
+div.about div.dev .dev-card .social a
+{
+  display: none;
+}
+/* Hover effect for the dev-card */
+div.about div.dev .dev-card:hover {
+  background: linear-gradient(45deg, #001f17,#04684f,#07d3b1); /* Gradient on hover */
+  transform: translateY(-10px); /* Lift the card */
+}
+div.about div.dev .dev-card:hover h1,
+div.about div.dev .dev-card:hover p,
+div.about div.dev .dev-card:hover .social a
+{
+  display: block;
+}
 /* Responsive Design: When the screen width is smaller than 768px (tablets and below) */
 @media (max-width: 768px) {
   div.about div.dev {
@@ -617,7 +844,10 @@ div.more .items ul li strong {
 /* Vision Section */
 .more1 {
   min-height:100vh ;
-  background: #fff;
+  background: url('assests/images/bg\ \(2\).jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 50px 0;
   transition: background-position 0.2s ease-out; /* Transition for smooth parallax effect */
   position: relative;
@@ -641,7 +871,7 @@ div.more .items ul li strong {
 .more1 p {
   text-align: center;
   font-size: 1.2rem;
-  color: #008866;
+  color: #09ebb2;
   line-height: 1.6;
   max-width: calc(100% - 50px);
   margin: 0 auto;
