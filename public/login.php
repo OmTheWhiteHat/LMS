@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         button {
             padding: 12px;
+            margin: 5px 0;
             background-color: #4CAF50;
             color: white;
             font-size: 1.2em;
@@ -157,7 +158,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" name="username" placeholder="Username" required><br>
                 <input type="password" name="password" placeholder="Password" required><br>
                 <button type="submit">Login</button>
+                
             </form>
+            <center><a href="../index.html"><button>GOTO PUBLIC PAGE</button></a></center>
             <!-- Display error message if credentials are invalid -->
             <?php if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['admin'])): ?>
                 <div class="error-message">Invalid credentials!</div>

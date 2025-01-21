@@ -9,7 +9,7 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
-SET time_zone = "+00:00";
+SET time_zone = "+05:30";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -114,9 +114,9 @@ INSERT INTO `resolved_issues` (`id`, `system_id`, `issue_description`, `resoluti
 
 CREATE TABLE `systems` (
   `id` int(11) NOT NULL,
+  `cpu_id` varchar(255) DEFAULT NULL,
   `ups_id` varchar(255) DEFAULT NULL,
   `monitor_id` varchar(255) DEFAULT NULL,
-  `cpu_id` varchar(255) DEFAULT NULL,
   `issue` text DEFAULT NULL,
   `description` text DEFAULT NULL,
   `lab_name` varchar(255) DEFAULT NULL,
@@ -130,8 +130,8 @@ CREATE TABLE `systems` (
 -- Dumping data for table `systems`
 --
 
-INSERT INTO `systems` (`id`, `ups_id`, `monitor_id`, `cpu_id`, `issue`, `description`, `lab_name`, `os_installed`, `ram`, `image`, `internet`) VALUES
-(1, 'BEST-01', 'BEST-01', 'BEST-CPU-01', 'NO', 'No', 'CS-1', 'LINUX', '12GB', '../uploads/IMG_20240924_104644.jpg', 'Unknown');
+INSERT INTO `systems` (`id`,`cpu_id`, `ups_id`, `monitor_id`, `issue`, `description`, `lab_name`, `os_installed`, `ram`, `image`, `internet`) VALUES
+(1, 'BEST-CPU-01', 'BEST-01', 'BEST-01', 'NO', 'No', 'CS-1', 'LINUX', '12GB', '../uploads/default.jpg', 'Unknown');
 
 -- --------------------------------------------------------
 

@@ -28,6 +28,81 @@ html
   border-radius: 5px;
   background: linear-gradient(45deg, #08AEEA, #FF2525);
 } */
+.decorative-circle-left {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-color: #5c0606; /* Circle color */
+  border-radius: 50%; /* This makes it round */
+  top: 20%; /* Positioning */
+  left: 10%;
+  z-index: -1; /* To place it behind content */
+}
+.decorative-circle-right {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-color: #0b6d58; /* Circle color */
+  border-radius: 50%; /* This makes it round */
+  top: 50%; /* Positioning */
+  right: 10%;
+  z-index: -1; /* To place it behind content */
+}
+.decorative-rectangle {
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  background-color: #009578; /* Rectangle color */
+  top: 70%;
+  left: 20%;
+  z-index: -1; /* To place it behind content */
+}
+.decorative-rectangle-left-top{
+  position: absolute;
+  width: 500px;
+  height: 100px;
+  background-color: #10816e; /* Rectangle color */
+  top: 5%;
+  left: 10%;
+  z-index: -1; /* To place it behind content */
+}
+.decorative-rectangle-left-top:hover
+{
+  transition: .5s;
+  transform: scale(1.1);
+}
+.decorative-triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid #ff2525; /* Triangle color */
+  top: 50%;
+  left: 60%;
+  z-index: -1; /* To place it behind content */
+}
+.decorative-triangle-right {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 200px solid #ff2525; /* Triangle color */
+  top: 70%;
+  right: 10%;
+  z-index: -1; /* To place it behind content */
+}
+.decorative-circle, .decorative-triangle, .decorative-rectangle {
+  transition: all 0.3s ease; /* Add smooth transitions */
+}
+.decorative-circle:hover, .decorative-triangle:hover, .decorative-rectangle:hover,.decorative-triangle-right:hover,.decorative-circle-right:hover,
+.decorative-circle-left:hover {
+  transform: scale(1.1);
+  transition: .5s; /* Slightly enlarge on hover */
+}
+
+
 div.herosection
 {
     margin: 0;
@@ -209,13 +284,6 @@ p {
     color: #ffffff;
     display: flex;
   }
-  div.more1
-  {
-    height: 100vh;
-    background: #ffffff;
-    color: #000000;
-    display: flex;
-  }
   /* Importing Google font - Open Sans */
 div.about
 {
@@ -363,24 +431,73 @@ div.about .guider .social-icon a:hover:nth-child(4) i
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-div.about div.dev
-{
-  /* flex: 0 0 33.33%; */
+div.about div.dev {
   float: left;
   display: flex;
-  justify-content: space-evenly;
-  /* display: grid; */
-  /* padding: 100px; */
   background: #000;
+  margin: 20px 100px;
   width: 100%;
-  /* height: 360px;
-  width: 280px; */
+  transition: background 0.5s ease; /* Smooth transition for background change */
+  flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+  justify-content: center; /* Center the content when wrapped */
 }
-div.about div.dev .dev-card
-{
+
+div.about div.dev .dev-card {
   height: 360px;
-  width: 280px;
+  background: #2c3e50; /* Original card background color */
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.5s ease;
+  margin: 10px 0; /* Margin between cards */
+  width: 280px; /* Fixed width for cards */
 }
+
+/* Hover effect for the dev-card */
+div.about div.dev .dev-card:hover {
+  background: linear-gradient(45deg, #009578,#0A66C2); /* Gradient on hover */
+  transform: translateY(-10px); /* Lift the card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Responsive Design: When the screen width is smaller than 768px (tablets and below) */
+@media (max-width: 768px) {
+  div.about div.dev {
+    margin: 20px 50px; /* Adjust margin on smaller screens */
+  }
+
+  div.about div.dev .dev-card {
+    width: 100%; /* Make cards full width on small screens */
+    height: auto; /* Let height adjust based on content */
+    margin: 10px 0; /* Adjust margins for full-width cards */
+  }
+}
+
+/* Responsive Design: For smaller screens (below 480px, phones) */
+@media (max-width: 480px) {
+  div.about div.dev {
+    margin: 20px 10px; /* Reduce margins on smaller phones */
+  }
+
+  div.about div.dev .dev-card {
+    width: 100%; /* Make cards full width on very small screens */
+    height: auto; /* Let height adjust based on content */
+    padding: 15px; /* Adjust padding for small screens */
+    margin: 10px 0; /* Adjust margins for full-width cards */
+  }
+}
+
+
+/* Hover effect for the dev-card to make it pop out */
+div.about div.dev .dev-card:hover {
+  transform: translateY(-10px); /* Lift the card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
 
 .hide
 {
@@ -437,6 +554,244 @@ div.infinite-scroll h1
 .scroll div:nth-child(2) {
   animation: scroll2 var(--time) linear infinite;
   animation-delay: calc(var(--time)/-2);
+}
+
+
+div.more {
+  min-height:100vh ;
+  background: #000000;
+  padding: 50px 0;
+  transition: background-position 0.2s ease-out; /* Transition for smooth parallax effect */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div.more .items h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-family: "Permanent Marker", sans-serif;
+  color: #ffffff;
+  margin-bottom: 20px; /* Added margin to provide spacing below the h2 */
+}
+
+div.more .items h2 span.underBar {
+  display: block;
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #009578, #0A66C2);
+  width: 50%; /* Optional: Control the width of the underBar */
+  margin: 0 auto; /* Centers the underBar beneath the h2 element */
+  transition: width 0.3s ease; /* Smooth animation for underBar width */
+}
+
+/* Optional: Hover effect to animate the underBar width */
+div.more .items h2:hover span.underBar {
+  width: 100%; /* UnderBar expands on hover */
+}
+
+div.more .items p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #00fff2;
+}
+
+div.more .items ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+div.more .items ul li {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+div.more .items ul li strong {
+  color: #16a085;
+}
+
+/* Vision Section */
+.more1 {
+  min-height:100vh ;
+  background: #fff;
+  padding: 50px 0;
+  transition: background-position 0.2s ease-out; /* Transition for smooth parallax effect */
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.more1 h2 {
+  text-align: center;
+  font-size: 3rem;
+  font-family: "Permanent Marker", sans-serif;
+  background: linear-gradient(45deg, #009578,#0A66C2); /* Gradient text */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+}
+
+.more1 p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #008866;
+  line-height: 1.6;
+  max-width: calc(100% - 50px);
+  margin: 0 auto;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .more1 {
+    padding: 30px 0;
+  }
+
+  .more1 h2 {
+    font-size: 2.5rem;
+  }
+
+  .more1 p {
+    font-size: 1rem;
+  }
+}
+
+
+/* About Section */
+div.about {
+  min-height: 100vh;
+  color: #ffffff;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.about .guider-card {
+  text-align: center;
+}
+
+div.about .guider-card h1 {
+  margin: 30px 0;
+  font-size: 100px;
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
+  color: transparent;
+  font-family: "New Amsterdam", sans-serif;
+  letter-spacing: 5px;
+}
+
+div.about .guider {
+  margin: 0 auto;
+  border-radius: 30px;
+  height: 400px;
+  width: 320px;
+  background: #ffffffe0;
+  color: #000000;
+  padding: 10px;
+  justify-content: center;
+  transition: 0.5s ease all;
+}
+
+div.about .guider:hover {
+  color: #fff;
+  background: #01232f;
+}
+
+div.about .guider img {
+  display: flex;
+  margin: 10px 50px 20px auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.404);
+}
+
+div.about .guider .info h3,
+div.about .guider .info h4 {
+  text-align: center;
+}
+
+div.about .guider:hover .info h4:nth-child(3) {
+  color: #c6c6c6;
+  transition: 0.5s ease all;
+}
+
+div.about .guider-card .guider .social-icon {
+  width: calc(100% - 20px);
+  margin: 20px auto;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.about .guider-card .guider .social-icon a {
+  text-decoration: none;
+  color: #000000;
+  padding: 10px 13px;
+  border-radius: 50%;
+  margin: 0 10px auto;
+  background: transparent;
+}
+
+div.about .guider:hover .social-icon a {
+  transition: 1s ease all;
+  color: #fff;
+}
+
+div.about .guider .social-icon a:hover i {
+  transition: 0.5s;
+  transform: scale(3);
+}
+
+div.about div.dev {
+  display: flex;
+  justify-content: space-evenly;
+  background: #000;
+  width: 100%;
+}
+div.about .dev-title
+{
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
+  color: transparent;
+  font-family: "New Amsterdam", sans-serif;
+  letter-spacing: 5px;
+  margin: 50px 0 0 0;
+  font-size: 50px;
+}
+div.about .dev-title span
+{
+  display: block;
+  height: 5px;
+  width: calc(100% + 20px);
+  transform: translateX(-10px);
+  border-radius: 5px;
+  background: linear-gradient(45deg,#009578,#0A66C2);
+}
+
+div.about div.dev .dev-card {
+  height: 360px;
+  width: 280px;
+  background: #2c3e50;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+div.about div.dev .dev-card h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 @keyframes scroll {
