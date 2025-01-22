@@ -435,6 +435,322 @@ p {
     color: #ffffff;
     display: flex;
   }
+.gotoLMS
+{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 10px 0;
+}
+.gotoLMS a
+{
+  text-decoration: none;
+}
+.gotoLMS .animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 36px;
+  border: 4px solid;
+  border-color: transparent;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: rgb(55, 0, 255);
+  box-shadow: 0 0 0 2px rgb(55, 0, 255);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gotoLMS .animated-button svg {
+  position: absolute;
+  width: 24px;
+  fill: rgb(55, 0, 255);
+  z-index: 9;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gotoLMS .animated-button .arr-1 {
+  right: 16px;
+}
+
+.gotoLMS .animated-button .arr-2 {
+  left: -25%;
+}
+
+.gotoLMS .animated-button .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: rgb(55, 0, 255);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gotoLMS .animated-button .text {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-12px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.gotoLMS .animated-button:hover {
+  box-shadow: 0 0 0 12px transparent;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.gotoLMS .animated-button:hover .arr-1 {
+  right: -25%;
+}
+
+.gotoLMS .animated-button:hover .arr-2 {
+  left: 16px;
+}
+
+.gotoLMS .animated-button:hover .text {
+  transform: translateX(12px);
+}
+
+.gotoLMS .animated-button:hover svg {
+  fill: #ffffff;
+}
+
+.gotoLMS .animated-button:active {
+  scale: 0.95;
+  box-shadow: 0 0 0 4px rgb(55, 0, 255);
+}
+
+.gotoLMS .animated-button:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 1;
+}
+
+/* LMS SECTION */
+/* Lab Management Section Styles */
+.lms-section {
+  padding: 60px 20px;
+  min-height: 100vh;
+  background: #f4f7fa;
+  color: #333;
+  text-align: center;
+  font-family: 'Poppins', sans-serif
+}
+
+.lms-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lms-section .container .content .section-title {
+  font-size: 72px;
+  background: -webkit-linear-gradient( #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientAnimation 5s ease-in-out infinite; /* Animation applied */
+  margin-bottom: 20px;
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background: -webkit-linear-gradient(#6a11cb, #2575fc); /* Initial gradient */
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+  25% {
+    background: -webkit-linear-gradient(#fffb00, #ff3c00); /* Second gradient (peach) */
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+  50% {
+    background: -webkit-linear-gradient(#00c6ff, #0072ff); /* Third gradient (blue) */
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+  75% {
+    background: -webkit-linear-gradient(#a200ff, #ee093b); /* Fourth gradient (pinkish orange) */
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+  100% {
+    background: -webkit-linear-gradient(#6a11cb, #2575fc); /* Back to initial gradient */
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
+}
+.lms-section .section-description {
+  font-size: 1.2rem;
+  color: #333; /* Default color for the rest of the paragraph */
+  line-height: 1.6; /* For proper line height */
+  margin: 0;
+}
+.lms-section .section-description .highlight {
+  background: -webkit-linear-gradient(#ff0040, #ff00f2); /* Second gradient (peach) */
+    -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  display: inline-block; /* Ensure it doesn’t cause layout issues */
+}
+.lms-section .section-description span {
+  display: inline-block;
+  overflow-wrap: break-word; /* Prevents text from overflowing */
+}
+.lms-section .features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.lms-section .features-list li {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.lms-section .features-list li strong {
+  color: #2575fc;
+}
+.lms-section .features-list li:hover
+{
+  transform: translateX(5px);
+  transition: all 0.3s ease-in-out;
+}
+/* From Uiverse.io by Li-Deheng */ 
+.gotoLMS-from-section .btn-conteiner {
+  display: flex;
+  justify-content: center;
+  --color-text: #ffffff;
+  --color-background: #ff135a;
+  --color-outline: #ff145b80;
+  --color-shadow: #00000080;
+}
+
+.gotoLMS-from-section .btn-content {
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: 1s;
+  border-radius: 100px;
+  box-shadow: 0 0 0.2em 0 var(--color-background);
+}
+
+.gotoLMS-from-section .btn-content:hover, .btn-content:focus {
+  transition: 0.5s;
+  -webkit-animation: btn-content 1s;
+  animation: btn-content 1s;
+  outline: 0.1em solid transparent;
+  outline-offset: 0.2em;
+  box-shadow: 0 0 0.4em 0 var(--color-background);
+}
+
+.gotoLMS-from-section .btn-content .icon-arrow {
+  transition: 0.5s;
+  margin-right: 0px;
+  transform: scale(0.6);
+}
+
+.gotoLMS-from-section .btn-content:hover .icon-arrow {
+  transition: 0.5s;
+  margin-right: 25px;
+}
+
+.gotoLMS-from-section .icon-arrow {
+  width: 20px;
+  margin-left: 15px;
+  position: relative;
+  top: 6%;
+}
+  
+/* SVG */
+.gotoLMS-from-section #arrow-icon-one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+.gotoLMS-from-section #arrow-icon-two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.gotoLMS-from-section .btn-content:hover #arrow-icon-three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.gotoLMS-from-section .btn-content:hover #arrow-icon-one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.gotoLMS-from-section .btn-content:hover #arrow-icon-two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+
+  50% {
+    fill: var(--color-background);
+  }
+
+  100% {
+    fill: white;
+  }
+}
+
+/* Button animations */
+@-webkit-keyframes btn-content {
+  0% {
+    outline: 0.2em solid var(--color-background);
+    outline-offset: 0;
+  }
+}
+
+@keyframes btn-content {
+  0% {
+    outline: 0.2em solid var(--color-background);
+    outline-offset: 0;
+  }
+}
+@media (max-width: 768px) {
+  .lms-section .section-title {
+    font-size: 2.2rem;
+  }
+
+  .lms-section .section-description {
+    font-size: 1rem;
+  }
+
+  .lms-section .features-list li {
+    font-size: 1rem;
+  }
+
+  .lms-section .cta-button {
+    font-size: 1rem;
+    padding: 10px 25px;
+  }
+}
+
+
   /* Importing Google font - Open Sans */
 div.about
 {
@@ -691,6 +1007,20 @@ div.about div.dev .dev-card:hover .social a
 {
   display: block;
 }
+div.about div.dev .dev-card:hover h1,
+div.about div.dev .dev-card:hover p
+{
+  width: calc(100%);
+  text-align: center;
+}
+div.about div.dev .dev-card h1:hover
+{
+  cursor: default;
+  scale: 1.1;
+  transform: translateY(-5px);
+  transition: .5s ease;
+}
+
 /* Responsive Design: When the screen width is smaller than 768px (tablets and below) */
 @media (max-width: 768px) {
   div.about div.dev {
@@ -730,6 +1060,22 @@ div.about div.dev .dev-card:hover {
 {
   display: none !important;
 }
+/* Hide the footer initially */
+.footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  opacity: 0;
+  pointer-events: none; /* Prevents clicks when hidden */
+  transition: opacity 0.3s ease-in-out;
+  z-index: 4000;
+}
+
+.footer.visible {
+  opacity: 1;
+  pointer-events: auto; /* Enable clicks when visible */
+}
+
 div.top a
 {
   text-decoration: none;
@@ -738,8 +1084,8 @@ div.top a
   border-radius: 20px;
   background: #2f004e;
   position: fixed;
-  right: 10;
-  bottom: 10;
+  right: 20;
+  bottom: 20;
   padding: 10px;
 }
 div.top a i
