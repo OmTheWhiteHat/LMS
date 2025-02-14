@@ -7,9 +7,10 @@ $result = mysqli_query($conn, $query);
 
 // Handle system status update (without file upload)
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
-    // Get the system_id and status
+    // Get the system_id, selected type, and status
     $system_id = mysqli_real_escape_string($conn, $_POST['system_id']);
     $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $device_type = mysqli_real_escape_string($conn, $_POST['device_type_info']);  // Added device type
 
     // Check if the system_id exists in the systems table
     $check_system_query = "SELECT id FROM systems WHERE id = '$system_id'";
@@ -17,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_status'])) {
 
     if (mysqli_num_rows($check_system_result) > 0) {
         // Insert the new system status
-        $status_query = "INSERT INTO system_status (system_id, status, last_updated) 
-                         VALUES ('$system_id', '$status', NOW())";
+        $status_query = "INSERT INTO system_status (system_id, status, device_type, last_updated) 
+                         VALUES ('$system_id', '$status', '$device_type', NOW())";  // Include device_type in the query
         if (mysqli_query($conn, $status_query)) {
             echo "<p>Status updated successfully!</p>";
             // Redirect to reload the page
@@ -176,6 +177,13 @@ footer p {
                 ?>
             </select><br>
 
+            <label for="device_type_info">Select Device Type</label>
+            <select name="device_type_info" required>
+                <option value="CPU">CPU</option>
+                <option value="UPS">UPS</option>
+                <option value="Monitor">Monitor</option>
+            </select><br>
+
             <label for="status">Status</label>
             <select name="status" required>
                 <option value="Active">Active</option>
@@ -193,38 +201,68 @@ footer p {
                 <tr>
                     <th>IMAGE</th>
                     <th>ID</th>
-                    <th>System ID</th>
-                    <th>CPU ID</th> <!-- New column for CPU_ID -->
+                    <th>SYSTEM ID</th>
+                    <th>DEVICE TYPE</th>
                     <th>Status</th>
                     <th>Last Update</th>
                 </tr>
             </thead>
             <tbody>
-                <?php while ($system = mysqli_fetch_assoc($result)) { 
-                    // Get the latest status for each system
-                    $status_query = "SELECT * FROM system_status WHERE system_id = " . $system['id'] . " ORDER BY last_updated DESC LIMIT 1";
-                    $status_result = mysqli_query($conn, $status_query);
-                    $status = mysqli_fetch_assoc($status_result);
+    <?php while ($system = mysqli_fetch_assoc($result)) { 
+        // Get all status entries for the current system
+        $status_query = "SELECT * FROM system_status WHERE system_id = " . $system['id'] . " ORDER BY last_updated DESC";
+        $status_result = mysqli_query($conn, $status_query);
+        
+        // Initialize status text and last updated time variables
+        $status_text = '';
+        $last_updated = '';
 
-                    // Check if there's a valid status entry
-                    if ($status) {
-                        $status_text = $status['status'];
-                        $last_updated = $status['last_updated'];
-                    } else {
-                        $status_text = 'No status available';
-                        $last_updated = 'N/A';
-                    }
-                    ?>
-                    <tr>
-                        <?php echo '<td><img src="' . htmlspecialchars($system['image']) . '" alt="System Image" style="width: 100px; height: auto;"></td>'; ?>
-                        <td><?php echo $system['id']; ?></td>
-                        <td><?php echo $system['ups_id']; ?> - <?php echo $system['monitor_id']; ?></td>
-                        <td><?php echo $system['cpu_id']; ?></td> <!-- Display CPU_ID -->
-                        <td><?php echo $status_text; ?></td>
-                        <td><?php echo $last_updated; ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
+        // Check if there are any status entries for this system
+        if (mysqli_num_rows($status_result) > 0) {
+            // Loop through all statuses for this system
+            while ($status = mysqli_fetch_assoc($status_result)) {
+                // Concatenate status entries for display
+                if (isset($status['status'])) {
+                    $status_text .= $status['status'] . "<br>";
+                } else {
+                    $status_text .= "No status available<br>";
+                }
+
+                // Concatenate last updated times for display
+                if (isset($status['last_updated'])) {
+                    $last_updated .= $status['last_updated'] . "<br>";
+                } else {
+                    $last_updated .= "N/A<br>";
+                }
+            }
+        } else {
+            $status_text = 'No status available';
+            $last_updated = 'N/A';
+        }
+    ?>
+    <tr>
+        <!-- Display system image -->
+        <td><img src="<?php echo htmlspecialchars($system['image']); ?>" alt="System Image" style="width: 100px; height: auto;"></td>
+
+        <!-- Display system ID -->
+        <td><?php echo $system['id']; ?></td>
+
+        <!-- Display system UPS ID and Monitor ID -->
+        <td><?php echo isset($system['system_id']) ? $system['system_id'] : 'No ID'; ?> - <?php echo isset($system['monitor_id']) ? $system['monitor_id'] : 'No Monitor'; ?></td>
+
+        <!-- Display Device Type -->
+        <td><?php echo isset($system['device_type']) ? $system['device_type'] : 'No Device Type'; ?></td>
+
+        <!-- Display all statuses for the current system -->
+        <td><?php echo nl2br($status_text); ?></td>
+
+        <!-- Display all last updated timestamps for the statuses -->
+        <td><?php echo nl2br($last_updated); ?></td>
+    </tr>
+    <?php } ?>
+</tbody>
+
+
         </table>
     </main>
 
